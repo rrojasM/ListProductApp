@@ -11,7 +11,7 @@ const Singup = () => {
 
             <Input placeholder="John Smith" label="Name" />
             <Input placeholder="example@gmail.com" label="Email" />
-            <Input placeholder="********" label="Password" />
+            <Input isPassword placeholder="********" label="Password" />
 
         </View>
     )
