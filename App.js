@@ -5,8 +5,8 @@ import {
   Text,
   View,
 } from 'react-native';
-import Chair from './src/Chair';
-import Table from './src/Table';
+
+import Splash from './src/screens/auth/splash';
 
 const App = () => {
 
@@ -14,13 +14,7 @@ const App = () => {
 
   return (
     <SafeAreaView>
-
-      <Text style={styles.themeHeader} onPress={() => setTheme('dark')}>Make Theme Dark</Text>
-      <View>
-        <Chair theme={theme} />
-
-        <Table />
-      </View>
+      <Splash />
     </SafeAreaView>
   );
 };
@@ -28,9 +22,9 @@ const App = () => {
 
 const styles = StyleSheet.create({
   themeHeader: {
-    margin: 16, 
+    margin: 16,
     fontSize: 16,
-    backgroundColor:'yellow'
+    backgroundColor: 'yellow'
   }
 });
 
