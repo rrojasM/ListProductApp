@@ -16,5 +16,4 @@ const Button = ({ title, onPress }) => {
     )
 }
 
-
 export default Button;

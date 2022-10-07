@@ -5,6 +5,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import Singup from './src/screens/auth/singUp';
 
 import Splash from './src/screens/auth/splash';
 
@@ -14,7 +15,9 @@ const App = () => {
 
   return (
     <SafeAreaView>
-      <Splash />
+     {/*  <Splash /> */}
+
+      <Singup />
     </SafeAreaView>
   );
 };
