@@ -7,31 +7,37 @@ import { styles } from './styles';
 import Separetor from '../../../components/seperator';
 import GoogleLogin from '../../../components/googleLogin';
 
-const Singin = () => {
-    const [checked, setChecked] = useState(false)
+const Signin = ({ navigation }) => {
 
     const onSignIn = () => {
-        console.log('PRESS SIGN IN');
+       console.log('PRESS ON SIGN');
     }
+    const onSignUp = () => {
+        navigation.navigate('Signup');
+    }
+    const onBack = () => {
+        navigation.goBack();
+    }
+
     return (
         <View style={styles.container}>
-            <Header title="Sign In" />
+            <Header onBackPress={onBack} title="Sign In" />
 
             <Input placeholder="example@gmail.com" label="Email" />
             <Input isPassword placeholder="********" label="Password" />
 
-            <Button style={styles.button} title="Sign In" />
+            <Button onPress={onSignIn} style={styles.button} title="Sign In" />
             <Separetor text="Or sign up with" />
             <GoogleLogin />
 
 
             <Text style={styles.textFooter}>
                 Don’t have an account?
-                <Text onPress={onSignIn} style={styles.footerLink}>Sign Up</Text>
+                <Text onPress={onSignUp} style={styles.footerLink}>Sign Up</Text>
             </Text>
 
         </View>
     )
 }
 
-export default React.memo(Singin); 
+export default React.memo(Signin); 

@@ -5,12 +5,19 @@ import {
   Text,
   View,
 } from 'react-native';
-import Singup from './src/screens/auth/singUp';
-import Splash from './src/screens/auth/splash';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import Singin from './src/screens/auth/singIn';
-GoogleSignin.configure();
 
+import Splash from './src/screens/auth/splash';
+import Signin from './src/screens/auth/singIn';
+import Signup from './src/screens/auth/singUp';
+
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { colors } from './src/utils/colors';
+
+const Stack = createStackNavigator();
+
+GoogleSignin.configure();
 const WEB_CLIENT_ID = '348967126421-1h1jimmnacped0v23cihlhi8b4b5agl4.apps.googleusercontent.com';
 
 const App = () => {
@@ -25,12 +32,13 @@ const App = () => {
   }, [])
 
   return (
-    <SafeAreaView>
-      {/*  <Splash /> */}
-      {/* <Singup /> */}
-
-      <Singin />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
+        <Stack.Screen name="Signin" component={Signin} options={{ headerShown: false }} />
+        <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 

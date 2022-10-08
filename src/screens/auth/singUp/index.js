@@ -8,15 +8,20 @@ import { styles } from './styles';
 import Separetor from '../../../components/seperator';
 import GoogleLogin from '../../../components/googleLogin';
 
-const Singup = () => {
+const Signup = ({ navigation }) => {
     const [checked, setChecked] = useState(false)
 
     const onSignIn = () => {
-        console.log('PRESS SIGN IN');
+        navigation.navigate('Signin')
     }
+
+    const onBack = () => {
+        navigation.goBack();
+    }
+
     return (
         <View style={styles.container}>
-            <Header title="Sign Up" />
+            <Header onBackPress={onBack} title="Sign Up" />
 
             <Input placeholder="John Smith" label="Name" />
             <Input placeholder="example@gmail.com" label="Email" />
@@ -39,4 +44,4 @@ const Singup = () => {
     )
 }
 
-export default React.memo(Singup); 
+export default React.memo(Signup); 
