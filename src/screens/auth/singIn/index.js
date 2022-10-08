@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import Header from '../../../components/authHeader';
-import CheckBox from '../../../components/checkBox';
 import Input from '../../../components/input';
 import Button from '../../../components/Button';
 import { styles } from './styles';
 import Separetor from '../../../components/seperator';
 import GoogleLogin from '../../../components/googleLogin';
 
-const Singup = () => {
+const Singin = () => {
     const [checked, setChecked] = useState(false)
 
     const onSignIn = () => {
@@ -16,27 +15,23 @@ const Singup = () => {
     }
     return (
         <View style={styles.container}>
-            <Header title="Sign Up" />
+            <Header title="Sign In" />
 
-            <Input placeholder="John Smith" label="Name" />
             <Input placeholder="example@gmail.com" label="Email" />
             <Input isPassword placeholder="********" label="Password" />
-            <View style={styles.agreeRow}>
-                <CheckBox checked={checked} onCheck={setChecked} />
-                <Text style={styles.agreeText}>I agree with <Text style={styles.textBold}>Terms</Text> & <Text style={styles.textBold}>Privacy</Text></Text>
-            </View>
-            <Button style={styles.button} title="Sign Up" />
+
+            <Button style={styles.button} title="Sign In" />
             <Separetor text="Or sign up with" />
             <GoogleLogin />
 
 
             <Text style={styles.textFooter}>
-                Already have an account?
-                <Text onPress={onSignIn} style={styles.footerLink}>Sign In</Text>
+                Don’t have an account?
+                <Text onPress={onSignIn} style={styles.footerLink}>Sign Up</Text>
             </Text>
 
         </View>
     )
 }
 
-export default React.memo(Singup); 
+export default React.memo(Singin); 
