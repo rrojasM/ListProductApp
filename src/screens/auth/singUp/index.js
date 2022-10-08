@@ -5,6 +5,7 @@ import CheckBox from '../../../components/checkBox';
 import Input from '../../../components/input';
 import Button from '../../../components/Button';
 import { styles } from './styles';
+import Separetor from '../../../components/seperator';
 
 const Singup = () => {
     const [checked, setChecked] = useState(false)
@@ -19,8 +20,9 @@ const Singup = () => {
                 <CheckBox checked={checked} onCheck={setChecked} />
                 <Text style={styles.agreeText}>I agree with <Text style={styles.textBold}>Terms</Text> & <Text style={styles.textBold}>Privacy</Text></Text>
             </View>
-
             <Button style={styles.button} title="Sign Up" />
+
+            <Separetor text="Or sign up with"/>
 
         </View>
     )
