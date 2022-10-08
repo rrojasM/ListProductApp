@@ -16,4 +16,4 @@ const CheckBox = ({ checked, onCheck }) => {
     )
 }
 
-export default CheckBox;
+export default React.memo(CheckBox);

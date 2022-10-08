@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     },
     agreeRow: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     agreeText: {
         color: colors.BLUE,

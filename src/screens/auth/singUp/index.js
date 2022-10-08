@@ -6,6 +6,7 @@ import Input from '../../../components/input';
 import Button from '../../../components/Button';
 import { styles } from './styles';
 import Separetor from '../../../components/seperator';
+import GoogleLogin from '../../../components/googleLogin';
 
 const Singup = () => {
     const [checked, setChecked] = useState(false)
@@ -21,9 +22,12 @@ const Singup = () => {
                 <Text style={styles.agreeText}>I agree with <Text style={styles.textBold}>Terms</Text> & <Text style={styles.textBold}>Privacy</Text></Text>
             </View>
             <Button style={styles.button} title="Sign Up" />
+            <Separetor text="Or sign up with" />
+            <GoogleLogin />
 
-            <Separetor text="Or sign up with"/>
-
+            <View style={[styles.agreeRow, { justifyContent: 'center', marginVertical: 25 }]}>
+                <Text style={styles.agreeText}>Already have an account? <Text style={styles.textBold}>Sign In</Text></Text>
+            </View>
         </View>
     )
 }
