@@ -18,5 +18,13 @@ export const styles = StyleSheet.create({
     },
     button: {
         marginVertical: 20
+    },
+    textFooter: {
+        color: colors.BLUE,
+        marginBottom: 50,
+        textAlign: 'center'
+    },
+    footerLink: {
+        fontWeight: 'bold'
     }
 })

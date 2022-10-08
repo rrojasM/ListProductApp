@@ -14,12 +14,11 @@ const WEB_CLIENT_ID = '348967126421-1h1jimmnacped0v23cihlhi8b4b5agl4.apps.google
 
 const App = () => {
   useEffect(() => {
-
+    console.log('env===>', process.env.GOOGLE_WEB_CLIENT_ID);
     GoogleSignin.configure({
-      scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
-      webClientId: WEB_CLIENT_ID, // client ID of type WEB for your server (needed to verify user ID and offline access)
-      offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-      //iosClientId: '<FROM DEVELOPER CONSOLE>',
+      scopes: ['https://www.googleapis.com/auth/drive.readonly'],
+      webClientId: WEB_CLIENT_ID,
+      offlineAccess: true,
     });
 
   }, [])

@@ -10,6 +10,10 @@ import GoogleLogin from '../../../components/googleLogin';
 
 const Singup = () => {
     const [checked, setChecked] = useState(false)
+
+    const onSignIn = () => {
+        console.log('PRESS SIGN IN');
+    }
     return (
         <View style={styles.container}>
             <Header title="Sign Up" />
@@ -25,9 +29,12 @@ const Singup = () => {
             <Separetor text="Or sign up with" />
             <GoogleLogin />
 
-            <View style={[styles.agreeRow, { justifyContent: 'center', marginVertical: 25 }]}>
-                <Text style={styles.agreeText}>Already have an account? <Text style={styles.textBold}>Sign In</Text></Text>
-            </View>
+
+            <Text style={styles.textFooter}>
+                Already have an account?
+                <Text onPress={onSignIn} style={styles.footerLink}>Sign In</Text>
+            </Text>
+
         </View>
     )
 }
