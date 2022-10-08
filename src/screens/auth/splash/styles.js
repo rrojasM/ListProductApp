@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: '100%',
-        //backgroundColor: colors.WHITE
+        backgroundColor: colors.WHITE
     },
     image: {
         width: '100%',
