@@ -19,6 +19,10 @@ const Signup = ({ navigation }) => {
         navigation.goBack();
     }
 
+    const onSignUp = () => {
+        console.log('ON SIGN UP');
+    }
+
     return (
         <View style={styles.container}>
             <Header onBackPress={onBack} title="Sign Up" />
@@ -30,7 +34,7 @@ const Signup = ({ navigation }) => {
                 <CheckBox checked={checked} onCheck={setChecked} />
                 <Text style={styles.agreeText}>I agree with <Text style={styles.textBold}>Terms</Text> & <Text style={styles.textBold}>Privacy</Text></Text>
             </View>
-            <Button style={styles.button} title="Sign Up" />
+            <Button onPress={onSignUp} style={styles.button} title="Sign Up" />
             <Separetor text="Or sign up with" />
             <GoogleLogin />
 
