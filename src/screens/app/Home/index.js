@@ -1,9 +1,10 @@
 import React from 'react';
-import { ScrollView, FlatList } from 'react-native'
+import { ScrollView, FlatList, View } from 'react-native'
 import { styles } from './styles';
 import HeaderSearch from '../../../components/header';
 import CategorieBox from '../../../components/categorieBox';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import ProductsBoxHomeItem from '../../../components/productsBoxHomeItem';
 
 const categories = [
     {
@@ -87,23 +88,37 @@ const Home = () => {
 
     const renderCategorie = ({ item, index }) => {
         return (
-            <CategorieBox title={item?.title} image={item?.image} />
+            <CategorieBox isFirst={index === 0} title={item?.title} image={item?.image} />
+        )
+    }
+
+    const renderProduct = ({ item }) => {
+        return (
+            <ProductsBoxHomeItem {...item} />
         )
     }
 
     return (
         <SafeAreaView>
-            <ScrollView style={styles.container}>
-                <HeaderSearch showSearch title="Find All You Need" />
-                <FlatList
-                    showsHorizontalScrollIndicator={false}
-                    style={styles.list}
-                    horizontal
-                    data={categories}
-                    renderItem={renderCategorie}
-                    keyExtractor={(item, index) => String(index)}
-                />
-            </ScrollView>
+
+            <HeaderSearch showSearch title="Find All You Need" />
+            <FlatList
+                showsHorizontalScrollIndicator={false}
+                style={styles.list}
+                horizontal
+                data={categories}
+                renderItem={renderCategorie}
+                keyExtractor={(item, index) => String(index)}
+            />
+            <FlatList
+                style={styles.productsList}
+                numColumns={2}
+                data={products}
+                renderItem={renderProduct}
+                keyExtractor={(item) => String(item.id)}
+                ListFooterComponent={<View style={{ height: 200 }} />}
+            />
+
         </SafeAreaView>
     )
 }

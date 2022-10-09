@@ -6,6 +6,10 @@ export const styles = StyleSheet.create({
         padding: 24,
     },
     list:{
-        paddingVertical: 24
+        paddingVertical: 24,
+        marginTop: 16,
+    },
+    productsList:{
+        paddingHorizontal: 16
     }
 })

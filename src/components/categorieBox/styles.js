@@ -17,8 +17,8 @@ export const styles = StyleSheet.create({
     },
     imageContainer: {
         backgroundColor: '#DADADA',
+        padding: 16,
         borderRadius: 8,
-        padding: 10,
         marginBottom: 8,
     }
 })
