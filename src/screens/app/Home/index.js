@@ -116,7 +116,7 @@ const Home = () => {
                 data={products}
                 renderItem={renderProduct}
                 keyExtractor={(item) => String(item.id)}
-                ListFooterComponent={<View style={{ height: 200 }} />}
+                ListFooterComponent={<View style={{ height: 290 }} />}
             />
 
         </SafeAreaView>

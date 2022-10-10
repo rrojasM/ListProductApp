@@ -3,7 +3,7 @@ import { colors } from "../../utils/colors";
 
 export const styles = StyleSheet.create({
     container:{
-        top: 26
+        top: 18
     },
     inputContainer: {
         borderWidth: 1,
