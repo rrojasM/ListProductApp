@@ -11,7 +11,7 @@ const HeaderSearch = ({ title, onBackPress, onLogout, showLogout, showSearch, sh
         setShowSearchInput(s => !s)
     }
     return (
-        <View>
+        <View style={styles.mainContainer}>
             <View style={styles.container}>
                 {showBack ? (
                     <Pressable hitSlop={20} onPress={onBackPress}>
