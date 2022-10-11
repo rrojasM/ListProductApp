@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, ScrollView, FlatList, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './styles';
 import { products } from '../../../data/products'
@@ -15,7 +15,7 @@ const Favorites = () => {
     }
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.main}>
             <Header title="Favorites" />
             <FlatList data={products} renderItem={renderProducts} keyExtractor={(item) => String(item?.id)} />
         </SafeAreaView>

@@ -6,7 +6,7 @@ import { styles } from './styles';
 const Profile = () => {
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.main}>
             <ScrollView style={styles.container}>
                 <Text>Profile</Text>
             </ScrollView>

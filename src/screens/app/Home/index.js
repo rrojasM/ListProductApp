@@ -84,7 +84,7 @@ const products = [
     },
 ];
 
-const Home = () => {
+const Home = ({ navigation }) => {
     const [selectedCategory, setSelectedCategory] = useState();
     const [keyword, setKeyword] = useState()
     const [filterProducts, setFilterProducts] = useState(products);
@@ -119,13 +119,18 @@ const Home = () => {
     }
 
     const renderProduct = ({ item }) => {
+
+        const onProductPress = (product) => {
+            navigation.navigate('ProductDetails', { product })
+        }
+
         return (
-            <ProductsBoxHomeItem {...item} />
+            <ProductsBoxHomeItem onPress={() => onProductPress(item)} {...item} />
         )
     }
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.main}>
             <HeaderSearch showSearch onSearch={setKeyword} keyword={keyword} title="Find All You Need" />
             <FlatList
                 showsHorizontalScrollIndicator={false}
