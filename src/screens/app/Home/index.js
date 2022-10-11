@@ -146,7 +146,7 @@ const Home = ({ navigation }) => {
                 data={filterProducts}
                 renderItem={renderProduct}
                 keyExtractor={(item) => String(item.id)}
-                ListFooterComponent={<View style={{ height: 290 }} />}
+                ListFooterComponent={<View style={{ height: 200 }} />}
             />
         </SafeAreaView>
     )
