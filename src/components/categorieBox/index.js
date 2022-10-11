@@ -6,7 +6,7 @@ import { styles } from './styles';
 const CategorieBox = ({ title, image, onPress, isFirst, isSelected }) => {
 
     return (
-        <View style={{ height: 150, marginTop: 10 }}>
+        <View style={{ height: 105, marginTop: 15, paddingBottom: 75, paddingTop: 3, bottom: 0 }}>
             <Pressable onPress={onPress} style={[styles.container, isFirst ? { marginLeft: 24 } : {}]}>
                 <View style={[styles.imageContainer, isSelected ? { backgroundColor: colors.BLACK } : {}]}>
                     <Image style={styles.image} source={{ uri: image }} />

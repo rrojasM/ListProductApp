@@ -86,16 +86,23 @@ const products = [
 
 const Home = () => {
     const [selectedCategory, setSelectedCategory] = useState();
+    const [keyword, setKeyword] = useState()
     const [filterProducts, setFilterProducts] = useState(products);
 
     useEffect(() => {
-        if (selectedCategory) {
+        if (selectedCategory && !keyword) {
             const updatedProducts = products.filter((product) => product?.category === selectedCategory);
             setFilterProducts(updatedProducts);
-        } else {
-            setFilterProducts(products);
+        } else if (selectedCategory && keyword) {
+            const updatedProducts = products.filter((product) => product?.category === selectedCategory && product?.title?.toLowerCase().includes(keyword?.toLowerCase()));
+            setFilterProducts(updatedProducts)
+        } else if (!selectedCategory && keyword) {
+            const updatedProducts = products.filter((product) => product?.title?.toLowerCase().includes(keyword?.toLowerCase()));
+            setFilterProducts(updatedProducts)
+        } else if (!keyword && !selectedCategory) {
+            setFilterProducts(products)
         }
-    }, [selectedCategory])
+    }, [selectedCategory, keyword])
 
 
 
@@ -119,8 +126,7 @@ const Home = () => {
 
     return (
         <SafeAreaView>
-
-            <HeaderSearch showSearch title="Find All You Need" />
+            <HeaderSearch showSearch onSearch={setKeyword} keyword={keyword} title="Find All You Need" />
             <FlatList
                 showsHorizontalScrollIndicator={false}
                 style={styles.list}
@@ -137,9 +143,7 @@ const Home = () => {
                 keyExtractor={(item) => String(item.id)}
                 ListFooterComponent={<View style={{ height: 290 }} />}
             />
-
         </SafeAreaView>
     )
 }
-
 export default React.memo(Home); 
