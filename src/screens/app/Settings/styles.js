@@ -12,13 +12,26 @@ export const styles = StyleSheet.create({
     },
     sectionTitle: {
         color: colors.GREY,
-        fontSize: 16,
-        fontWeight: '500',
+        fontSize: 20,
+        fontWeight: 'bold',
         marginBottom: 16
     },
     item: {
         paddingVertical: 8,
         paddingHorizontal: 16,
         marginVertical: 8
+    },
+    sectionHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+    icon: {
+        width: 32,
+        height: 32
+    },
+    button:{
+        paddingVertical: 12,
+        marginTop: 16
     }
 })
