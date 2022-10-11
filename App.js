@@ -12,6 +12,7 @@ import Home from './src/screens/app/Home';
 import Favorites from './src/screens/app/Favorites';
 import Profile from './src/screens/app/Profile';
 import { colors } from './src/utils/colors';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -68,6 +69,7 @@ const App = () => {
 
 
   return (
+
     <NavigationContainer>
       <Stack.Navigator>
         {isSignedIn ? (
@@ -83,6 +85,7 @@ const App = () => {
         )}
       </Stack.Navigator>
     </NavigationContainer>
+
   );
 };
 

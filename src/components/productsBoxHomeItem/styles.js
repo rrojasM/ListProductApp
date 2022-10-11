@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
         borderRadius: 8
     },
     price: {
-        color: '#606060',
+        color: colors.BLACK,
         paddingBottom: 8
     }
 })
