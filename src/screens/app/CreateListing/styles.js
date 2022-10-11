@@ -13,20 +13,18 @@ export const styles = StyleSheet.create({
     sectionTitle: {
         color: colors.GREY,
         fontSize: 20,
-        fontWeight: 'bold',
+        fontWeight: '500',
         marginBottom: 16
     },
     image: {
         width: 100,
         height: 100,
         borderRadius: 4,
-        marginRight: 8,
-        marginTop: 8
     },
     uploadContainer: {
         width: 100,
         height: 100,
-        borderRadius: 10,
+        borderRadius: 8,
         borderWidth: 1,
         borderColor: colors.GREY,
         borderStyle: 'dotted',
@@ -35,7 +33,6 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginRight: 8,
         marginTop: 8
-
     },
     uploadCircle: {
         width: 32,
@@ -54,7 +51,25 @@ export const styles = StyleSheet.create({
     imageRow: {
         flexDirection: 'row',
         alignItems: 'center',
-        flexWrap: 'wrap'
-
+        flexWrap: 'wrap',
+        paddingBottom: 16
+    },
+    imageContent: {
+        flexDirection: 'row',
+        marginTop: 8,
+        marginRight: 8
+    },
+    delete: {
+        width: 24,
+        height: 24,
+        marginLeft: -16,
+        marginTop: -10
+    },
+    textarea: {
+        minHeight: 150,
+        paddingTop: 16,
+    },
+    button: {
+        marginBottom: 160,
     }
 })
