@@ -1,10 +1,8 @@
 import React from 'react';
-import { FlatList, ScrollView, Text, Image, View } from 'react-native';
+import { ScrollView, Text, Image, View, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './styles';
-import { products } from '../../../data/products'
-import FavoriteItem from '../../../components/favoriteItem';
-import Header from '../../../components/header';
+import ButtonSeller from '../../../components/ButtonSeller';
 
 const ProductDetails = ({ navigation, route }) => {
     const { product } = route?.params || {};
@@ -19,6 +17,12 @@ const ProductDetails = ({ navigation, route }) => {
                     <Text style={styles.description}>{product?.description}</Text>
                 </View>
             </ScrollView>
+            <View style={styles.footer}>
+                <Pressable style={styles.bookmarkContainer}>
+                    <Image style={styles.bookmarkIcon} source={require('../../../assets/bookmark_blue.png')} />
+                </Pressable>
+                <ButtonSeller title="Contact Seller" />
+            </View>
         </SafeAreaView>
     )
 }

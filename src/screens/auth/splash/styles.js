@@ -35,5 +35,9 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: 'center',
         marginTop: 30
+    },
+    main: {
+        width: '100%',
+        flexDirection: 'row'
     }
 })

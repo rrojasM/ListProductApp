@@ -6,7 +6,8 @@ export const styles = StyleSheet.create({
     main: {
         width: '100%',
         height: '100%',
-        backgroundColor: '#FFF'
+        backgroundColor: '#FFF',
+        flex: 1
     },
     container: {
 
@@ -40,6 +41,20 @@ export const styles = StyleSheet.create({
         textAlign: 'justify',
         fontSize: 16,
         marginVertical: 8
+    },
+    footer: {
+        padding: 24,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    bookmarkContainer: {
+        backgroundColor: "#DADADA",
+        padding: 18,
+        borderRadius: 8,
+        marginRight: 16
+    },
+    bookmarkIcon: {
+        width: 24,
+        height: 24
     }
-
 })
