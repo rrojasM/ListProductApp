@@ -7,7 +7,7 @@ import ListItem from '../../../components/listItem';
 import EditableBox from '../../../components/editableBox';
 import Button from '../../../components/Button';
 
-const Settings = () => {
+const Settings = ({ navigation }) => {
 
     const [editing, setEditing] = useState(false);
     const [values, setvalues] = useState({ name: 'User', email: 'user@email.com' })
@@ -28,12 +28,14 @@ const Settings = () => {
         Linking.openURL('https://google.com');
     }
 
-    console.log('====================================');
+    const goBack = () => {
+        navigation.goBack();
+    }
+
     console.log(values);
-    console.log('====================================');
     return (
         <SafeAreaView style={styles.main}>
-            <Header title="Settings" />
+            <Header showBack onBackPress={goBack} title="Settings" />
             <ScrollView style={styles.container}>
                 <View style={styles.sectionHeader}>
                     <Text style={styles.sectionTitle}>Personal Information</Text>
