@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView, FlatList, View } from 'react-native'
 import { styles } from './styles';
 import HeaderSearch from '../../../components/header';
@@ -85,10 +85,29 @@ const products = [
 ];
 
 const Home = () => {
+    const [selectedCategory, setSelectedCategory] = useState();
+    const [filterProducts, setFilterProducts] = useState(products);
+
+    useEffect(() => {
+        if (selectedCategory) {
+            const updatedProducts = products.filter((product) => product?.category === selectedCategory);
+            setFilterProducts(updatedProducts);
+        } else {
+            setFilterProducts(products);
+        }
+    }, [selectedCategory])
+
+
 
     const renderCategorie = ({ item, index }) => {
         return (
-            <CategorieBox isFirst={index === 0} title={item?.title} image={item?.image} />
+            <CategorieBox
+                onPress={() => setSelectedCategory(item?.id)}
+                isSelected={item?.id === selectedCategory}
+                isFirst={index === 0}
+                title={item?.title}
+                image={item?.image}
+            />
         )
     }
 
@@ -113,7 +132,7 @@ const Home = () => {
             <FlatList
                 style={styles.productsList}
                 numColumns={2}
-                data={products}
+                data={filterProducts}
                 renderItem={renderProduct}
                 keyExtractor={(item) => String(item.id)}
                 ListFooterComponent={<View style={{ height: 290 }} />}
