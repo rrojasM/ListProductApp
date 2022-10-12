@@ -5,16 +5,9 @@ export const styles = StyleSheet.create({
     main: {
         width: '100%',
         height: '100%',
-        backgroundColor: '#FFF'
+        backgroundColor: colors.WHITE
     },
     container: {
         padding: 24,
     },
-    list: {
-        paddingVertical: 24,
-        marginTop: 8,
-    },
-    productsList: {
-        paddingHorizontal: 16
-    }
 })
