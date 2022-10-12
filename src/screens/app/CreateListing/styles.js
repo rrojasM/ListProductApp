@@ -65,11 +65,11 @@ export const styles = StyleSheet.create({
         marginLeft: -16,
         marginTop: -10
     },
-    textarea: {
+    textArea: {
         minHeight: 150,
         paddingTop: 16,
     },
     button: {
-        marginBottom: 160,
+        marginBottom: 120,
     }
 })

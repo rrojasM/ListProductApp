@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
-import { Text, ScrollView, TouchableOpacity, Image, View, Pressable, ActivityIndicator } from 'react-native';
+import { Text, ScrollView, TouchableOpacity, Image, View, Pressable, ActivityIndicator, KeyboardAvoidingView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './styles';
 import Header from '../../../components/header';
+import Input from '../../../components/input';
 import { launchImageLibrary } from 'react-native-image-picker';
-
+import { categories } from '../../../data/categories';
+import Button from '../../../components/Button';
 
 const CreateListing = ({ navigation }) => {
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [values, setValues] = useState({});
+
+    console.log('values', values)
 
     const goBack = () => {
         navigation.goBack();
@@ -31,31 +36,69 @@ const CreateListing = ({ navigation }) => {
         })
     }
 
+    const onChange = (value, key) => {
+        setValues((val) => ({ ...val, [key]: value }));
+    }
+
     return (
         <SafeAreaView style={styles.main}>
             <Header showBack={true} onBackPress={goBack} title="Create a New listing" />
-            <ScrollView style={styles.container}>
-                <Text style={styles.sectionTitle}>Upload Photos</Text>
-                <View style={styles.imageRow}>
-                    <TouchableOpacity disabled={loading} style={styles.uploadContainer} onPress={uploadNewImage}>
-                        <View style={styles.uploadCircle}>
-                            <Text style={styles.uploadPlus}>+</Text>
-                        </View>
-                    </TouchableOpacity>
 
-                    {images.map(image => (
-                        <View key={image?.fileName} style={styles.imageContent}>
-                            <Image style={styles.image} source={{ uri: image?.uri }} />
-                            <Pressable hitSlop={20} onPress={() => onDeleteImage(image)}>
-                                <Image style={styles.delete} source={require('../../../assets/close.png')} />
-                            </Pressable>
-                        </View>
-                    ))}
-                    {loading ? (
-                        <ActivityIndicator />
-                    ) : null}
-                </View>
+            <ScrollView style={styles.container}>
+                <KeyboardAvoidingView behavior='position'>
+                    <Text style={styles.sectionTitle}>Upload Photos</Text>
+                    <View style={styles.imageRow}>
+                        <TouchableOpacity disabled={loading} style={styles.uploadContainer} onPress={uploadNewImage}>
+                            <View style={styles.uploadCircle}>
+                                <Text style={styles.uploadPlus}>+</Text>
+                            </View>
+                        </TouchableOpacity>
+
+                        {images.map(image => (
+                            <View key={image?.fileName} style={styles.imageContent}>
+                                <Image style={styles.image} source={{ uri: image?.uri }} />
+                                <Pressable hitSlop={20} onPress={() => onDeleteImage(image)}>
+                                    <Image style={styles.delete} source={require('../../../assets/close.png')} />
+                                </Pressable>
+                            </View>
+                        ))}
+                        {loading ? (
+                            <ActivityIndicator />
+                        ) : null}
+                    </View>
+                    <Input
+                        placeholder="Listing Title"
+                        label="Title"
+                        value={values.title}
+                        onChangeText={(v) => onChange(v, 'title')}
+                    />
+                    <Input
+                        placeholder="Select the category"
+                        label="Category"
+                        value={values.category}
+                        onChangeText={(v) => onChange(v, 'category')}
+                        type="picker"
+                        options={categories}
+                    />
+                    <Input
+                        placeholder="Enter Price in USD"
+                        label="Price"
+                        value={values.price}
+                        onChangeText={(v) => onChange(v, 'price')}
+                        keyboardType="numeric"
+                    />
+                    <Input
+                        style={styles.textArea}
+                        placeholder="Tell us more..."
+                        label="Description"
+                        value={values.description}
+                        onChangeText={(v) => onChange(v, 'description')}
+                        multiline
+                    />
+                </KeyboardAvoidingView>
+                <Button title="Submit" style={styles.button} />
             </ScrollView>
+
         </SafeAreaView>
     )
 }
