@@ -36,7 +36,6 @@ export const singUp = async (values) => {
     }
 }
 
-
 export const getProfile = async () => {
     try {
         const response = await request({
@@ -49,5 +48,22 @@ export const getProfile = async () => {
         }
     } catch (error) {
         console.log('Error in get profile', error);
+    }
+}
+
+export const updateProfile = async (data) => {
+    try {
+        const response = await request({
+            url: '/user/profile',
+            method: 'patch',
+            data,
+        });
+
+        if (response) {
+            const profile = await getProfile()
+            return profile;
+        }
+    } catch (error) {
+        console.log('Error in updateProfile', error);
     }
 }

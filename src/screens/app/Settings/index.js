@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Text, ScrollView, Linking, View, Image, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './styles';
@@ -6,22 +6,26 @@ import Header from '../../../components/header';
 import ListItem from '../../../components/listItem';
 import EditableBox from '../../../components/editableBox';
 import Button from '../../../components/Button';
+import { ProfileContext } from '../../../../App';
+import { updateProfile } from '../../../utils/backendCalls';
 
 const Settings = ({ navigation }) => {
-
     const [editing, setEditing] = useState(false);
-    const [values, setvalues] = useState({ name: 'User', email: 'user@email.com' })
+    const { profile, setProfile } = useContext(ProfileContext);
+    const [values, setValues] = useState({ _id: profile?._id, fullName: profile?.fullName, email: profile?.email })
 
     const onEditPress = () => {
         setEditing(true);
     }
 
-    const onSave = () => {
+    const onSave = async () => {
+        const updateP = await updateProfile(values);
+        setProfile(updateP)
         setEditing(false);
     }
 
     const onChange = (key, value) => {
-        setvalues(v => ({ ...v, [key]: value }))
+        setValues(v => ({ ...v, [key]: value }))
     }
 
     const onItemPress = () => {
@@ -44,7 +48,7 @@ const Settings = ({ navigation }) => {
                     </Pressable>
                 </View>
 
-                <EditableBox label="Name" onChangeText={(v) => onChange('name', v)} value={values.name} editable={editing} />
+                <EditableBox label="Name" onChangeText={(v) => onChange('fullName', v)} value={values.fullName} editable={editing} />
                 <EditableBox label="Email" onChangeText={(v) => onChange('email', v)} value={values.email} editable={editing} />
                 {editing ? (
                     <Button style={styles.button} onPress={onSave} title="Save" />
