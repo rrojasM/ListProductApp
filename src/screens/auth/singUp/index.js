@@ -12,7 +12,7 @@ import { singUp } from '../../../utils/backendCalls';
 import { UserContext } from '../../../../App';
 
 const Signup = ({ navigation }) => {
-    const { user, setUser } = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
     const [checked, setChecked] = useState(false);
     const [values, setValues] = useState({})
 

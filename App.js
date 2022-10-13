@@ -10,9 +10,9 @@ const WEB_CLIENT_ID = '348967126421-1h1jimmnacped0v23cihlhi8b4b5agl4.apps.google
 
 const App = () => {
   const [user, setUser] = useState();
-  console.log('USER STATE APP', user);
+
+
   useEffect(() => {
-    console.log('env===>', Config.GOOGLE_WEB_CLIENT_ID);
     GoogleSignin.configure({
       scopes: ['https://www.googleapis.com/auth/drive.readonly'],
       webClientId: WEB_CLIENT_ID,

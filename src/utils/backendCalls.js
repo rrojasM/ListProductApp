@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { request } from "./request";
 
 export const login = async (values) => {
@@ -9,10 +10,11 @@ export const login = async (values) => {
         });
 
         if (response?.data?.token) {
+            await AsyncStorage.setItem('auth_token', response?.data?.token)
             return response?.data?.token;
         }
     } catch (error) {
-        console.log('Error in signUp', error);
+        console.log('Error in signIn', error);
     }
 }
 
@@ -27,7 +29,6 @@ export const singUp = async (values) => {
         if (response) {
             const { email, password } = values
             const loginResponse = await login({ email, password });
-            console.log('Response login', loginResponse);
             return loginResponse;
         }
     } catch (error) {

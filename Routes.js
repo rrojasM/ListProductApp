@@ -15,6 +15,9 @@ import Settings from './src/screens/app/Settings';
 import CreateListing from './src/screens/app/CreateListing';
 import MyListings from './src/screens/app/MyListings';
 import { UserContext } from './App';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -64,13 +67,15 @@ function Tabs() {
 
 
 const Routes = () => {
-    const { user } = useContext(UserContext);
-    console.log('User routes context ===>: ', user);
+    const { user, setUser } = useContext(UserContext);
 
     useEffect(() => {
-      
+        (async () => {
+            const token = await AsyncStorage.getItem('auth_token');
+            setUser({ token });
+        })()
     }, [])
-    
+
 
     return (
         <NavigationContainer>
