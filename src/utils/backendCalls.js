@@ -67,3 +67,18 @@ export const updateProfile = async (data) => {
         console.log('Error in updateProfile', error);
     }
 }
+
+export const getServices = async () => {
+    try {
+        const response = await request({
+            url: '/services',
+            method: 'get',
+        });
+
+        if (response) {
+            return response?.data;
+        }
+    } catch (error) {
+        console.log('Error in get services', error);
+    }
+}

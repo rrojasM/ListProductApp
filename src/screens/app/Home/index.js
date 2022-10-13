@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ScrollView, FlatList, View } from 'react-native'
 import { styles } from './styles';
 import HeaderSearch from '../../../components/header';
@@ -7,24 +7,34 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ProductsBoxHomeItem from '../../../components/productsBoxHomeItem';
 import { categories } from '../../../data/categories';
 import { products } from '../../../data/products';
+import { getServices } from '../../../utils/backendCalls';
+import { ServicesContext } from '../../../../App';
 
 const Home = ({ navigation }) => {
     const [selectedCategory, setSelectedCategory] = useState();
     const [keyword, setKeyword] = useState()
-    const [filterProducts, setFilterProducts] = useState(products);
+    const [filterProducts, setFilterProducts] = useState(services);
+    const { services, setServices } = useContext(ServicesContext)
+
+    useEffect(() => {
+        (async () => {
+            const data = await getServices();
+            setServices(data);
+        })()
+    }, [])
 
     useEffect(() => {
         if (selectedCategory && !keyword) {
-            const updatedProducts = products.filter((product) => product?.category === selectedCategory);
+            const updatedProducts = services.filter((product) => String(product?.category) === String(selectedCategory));
             setFilterProducts(updatedProducts);
         } else if (selectedCategory && keyword) {
-            const updatedProducts = products.filter((product) => product?.category === selectedCategory && product?.title?.toLowerCase().includes(keyword?.toLowerCase()));
+            const updatedProducts = services.filter((product) => String(product?.category) === (selectedCategory) && product?.title?.toLowerCase().includes(keyword?.toLowerCase()));
             setFilterProducts(updatedProducts)
         } else if (!selectedCategory && keyword) {
-            const updatedProducts = products.filter((product) => product?.title?.toLowerCase().includes(keyword?.toLowerCase()));
+            const updatedProducts = services.filter((product) => product?.title?.toLowerCase().includes(keyword?.toLowerCase()));
             setFilterProducts(updatedProducts)
         } else if (!keyword && !selectedCategory) {
-            setFilterProducts(products)
+            setFilterProducts(services)
         }
     }, [selectedCategory, keyword])
 
@@ -69,7 +79,7 @@ const Home = ({ navigation }) => {
                 numColumns={2}
                 data={filterProducts}
                 renderItem={renderProduct}
-                keyExtractor={(item) => String(item.id)}
+                keyExtractor={services?._id}
                 ListFooterComponent={<View style={{ height: 200 }} />}
             />
         </SafeAreaView>
