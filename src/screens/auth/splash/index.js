@@ -4,6 +4,7 @@ import Button from '../../../components/Button';
 import { styles } from './styles';
 
 const Splash = ({ navigation }) => {
+  
 
     const onSignUp = () => {
         navigation.navigate('Signup');

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, Alert } from 'react-native';
 import Header from '../../../components/authHeader';
 import CheckBox from '../../../components/checkBox';
@@ -8,8 +8,11 @@ import { styles } from './styles';
 import Separetor from '../../../components/seperator';
 import GoogleLogin from '../../../components/googleLogin';
 import { request } from '../../../utils/request';
+import { singUp } from '../../../utils/backendCalls';
+import { UserContext } from '../../../../App';
 
 const Signup = ({ navigation }) => {
+    const { user, setUser } = useContext(UserContext);
     const [checked, setChecked] = useState(false);
     const [values, setValues] = useState({})
 
@@ -45,41 +48,13 @@ const Signup = ({ navigation }) => {
 
             console.log('DATA SEND IN REQUEST', values);
 
-            const response = await request({
-                url: '/user/register',
-                method: 'post',
-                data: values,
-            });
+            const token = await singUp(values);
+            setUser({token})
 
-            console.log('RESPONSE REGISTER USER: ', response);
+            console.log('RESPONSE Token:', token);
         } catch (error) {
             console.log(error);
         }
-
-
-        /* fetch("https://listicle.deegeehub.com/api/user/register", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "fullName": values?.fullName,
-                "email": values?.email,
-                "password": values?.password,
-                "confirmPassword": values?.confirmPassword
-            })
-        })
-            .then((response) => response.json())
-            .then(res => {
-                console.log('RESPONSE DATA =====> ', res.status);
-                console.log('RESPONSE DATA =====> ', res);
-
-                if (res?.message) {
-                    Alert.alert(res?.message);
-                }
-            }) */
-
     }
 
     return (
