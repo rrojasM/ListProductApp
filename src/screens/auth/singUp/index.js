@@ -25,35 +25,36 @@ const Signup = ({ navigation }) => {
         setValues(v => ({ ...v, [key]: values }))
     }
 
-    const onSignUp = () => {
+    const onSignUp = async () => {
 
-        if (!values?.fullName || !values?.email || !values?.password || !values?.confirmPassword) {
-            Alert.alert('All filds are required');
-            return;
+        try {
+            if (!values?.fullName || !values?.email || !values?.password || !values?.confirmPassword) {
+                Alert.alert('All filds are required');
+                return;
+            }
+
+            if (values?.password !== values?.confirmPassword) {
+                Alert.alert('Password do not march');
+                return;
+            }
+
+            if (!checked) {
+                Alert.alert('Please agree to the Terms');
+                return;
+            }
+
+            console.log('DATA SEND IN REQUEST', values);
+
+            const response = await request({
+                url: '/user/register',
+                method: 'post',
+                data: values,
+            });
+
+            console.log('RESPONSE REGISTER USER: ', response);
+        } catch (error) {
+            console.log(error);
         }
-
-        if (values?.password !== values?.confirmPassword) {
-            Alert.alert('Password do not march');
-            return;
-        }
-
-        if (!checked) {
-            Alert.alert('Please agree to the Terms');
-            return;
-        }
-
-        console.log('DATA SEND IN REQUEST', values);
-
-        request({
-            url: '/user/register',
-            method: 'post',
-            data: values,
-
-        }).then((response) => {
-            console.log(response);
-        }).catch(err => {
-            console.log(err);
-        })
 
 
         /* fetch("https://listicle.deegeehub.com/api/user/register", {
