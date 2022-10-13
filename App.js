@@ -69,7 +69,7 @@ const WEB_CLIENT_ID = '348967126421-1h1jimmnacped0v23cihlhi8b4b5agl4.apps.google
 
 const App = () => {
 
-  const isSignedIn = true;
+  const isSignedIn = false;
 
   useEffect(() => {
     console.log('env===>', Config.GOOGLE_WEB_CLIENT_ID);

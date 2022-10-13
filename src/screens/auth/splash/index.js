@@ -5,8 +5,6 @@ import { styles } from './styles';
 
 const Splash = ({ navigation }) => {
 
-    console.log('NAVIGATION =====>: ', navigation);
-
     const onSignUp = () => {
         navigation.navigate('Signup');
     }
