@@ -76,9 +76,31 @@ export const getServices = async () => {
         });
 
         if (response) {
+            console.log('GET SERVICES DATA', response?.data);
             return response?.data;
         }
     } catch (error) {
         console.log('Error in get services', error);
+    }
+}
+
+export const updateService = async (id, data) => {
+    try {
+        const response = await request({
+            url: '/services',
+            method: 'patch',
+            data: {
+                servicesId: id,
+                ...data
+            }
+        });
+
+        if (response) {
+            const services = await getServices();
+            console.log('Services: ', services);
+            return services;
+        }
+    } catch (error) {
+        console.log('Error in updateService', error);
     }
 }

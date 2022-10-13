@@ -36,7 +36,7 @@ const Home = ({ navigation }) => {
         } else if (!keyword && !selectedCategory) {
             setFilterProducts(services)
         }
-    }, [selectedCategory, keyword])
+    }, [selectedCategory, keyword, services])
 
 
 
