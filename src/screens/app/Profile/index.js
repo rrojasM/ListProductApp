@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './styles';
 import Header from '../../../components/header';
 import ListItem from '../../../components/listItem';
 import Button from '../../../components/Button';
+import { getProfile } from '../../../utils/backendCalls';
+import { ProfileContext } from '../../../../App';
 
 
 const Profile = ({ navigation }) => {
-
     const num = 10;
+    const { profile, setProfile } = useContext(ProfileContext);
+
+
+    useEffect(() => {
+        (async () => {
+            const data = await getProfile();
+            console.log('profile', profile);
+            console.log('data', data);
+            setProfile(data);
+        })()
+    }, [])
+
 
     const onLogout = () => {
         console.log('On logout tap');
@@ -32,8 +45,8 @@ const Profile = ({ navigation }) => {
             <Header title="Profile" showLogout onLogout={onLogout} />
             <View style={styles.container}>
                 <View style={styles.content}>
-                    <Text style={styles.name}>Username:</Text>
-                    <Text style={styles.email}>Email:</Text>
+                    <Text style={styles.name}>{profile?.fullName}</Text>
+                    <Text style={styles.email}>{profile?.email}</Text>
 
                     <ListItem onPress={onMyListingsPress} title="My Listings" subTitle={`You have ${num} listings`} />
                     <ListItem onPress={onSettingsPress} title="Settings" subTitle="Account, FAQ, Contact" />

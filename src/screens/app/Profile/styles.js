@@ -19,9 +19,9 @@ export const styles = StyleSheet.create({
         marginBottom: 12
     },
     email: {
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: '100',
-        color: colors.GREY,
+        color: colors.BLUE,
         marginBottom: 16
     },
     content:{

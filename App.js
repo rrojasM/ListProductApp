@@ -4,13 +4,15 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import Routes from './Routes';
 
 export const UserContext = React.createContext();
+export const ProfileContext = React.createContext();
+
 
 GoogleSignin.configure();
 const WEB_CLIENT_ID = '348967126421-1h1jimmnacped0v23cihlhi8b4b5agl4.apps.googleusercontent.com';
 
 const App = () => {
   const [user, setUser] = useState();
-
+  const [profile, setProfile] = useState();
 
   useEffect(() => {
     GoogleSignin.configure({
@@ -24,8 +26,12 @@ const App = () => {
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
-      <Routes />
+      <ProfileContext.Provider value={{ profile, setProfile }}>
+
+        <Routes />
+      </ProfileContext.Provider>
     </UserContext.Provider>
+
 
 
 

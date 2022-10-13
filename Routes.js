@@ -16,6 +16,7 @@ import CreateListing from './src/screens/app/CreateListing';
 import MyListings from './src/screens/app/MyListings';
 import { UserContext } from './App';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { addTokenToAxios } from './src/utils/request';
 
 
 const Stack = createNativeStackNavigator();
@@ -72,10 +73,16 @@ const Routes = () => {
     useEffect(() => {
         (async () => {
             const token = await AsyncStorage.getItem('auth_token');
+            addTokenToAxios(token);
             setUser({ token });
         })()
     }, [])
 
+    useEffect(() => {
+        if(user?.token){
+            addTokenToAxios(user?.token)
+        }
+    }, [])
 
     return (
         <NavigationContainer>

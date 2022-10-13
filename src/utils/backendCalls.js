@@ -35,3 +35,19 @@ export const singUp = async (values) => {
         console.log('Error in signUp', error);
     }
 }
+
+
+export const getProfile = async () => {
+    try {
+        const response = await request({
+            url: '/user/profile',
+            method: 'get',
+        });
+
+        if (response) {
+            return response?.data;
+        }
+    } catch (error) {
+        console.log('Error in get profile', error);
+    }
+}
