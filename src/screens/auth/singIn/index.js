@@ -23,11 +23,8 @@ const Signin = ({ navigation }) => {
                 Alert.alert('All filds are required');
                 return;
             }
-            console.log('Values', values);
-
             const token = await login(values);
             setUser({ token });
-            console.log('Token: in Login', token);
             
         } catch (error) {
             console.log(error);

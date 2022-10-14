@@ -8,7 +8,7 @@ const ImageCarousel = ({ images }) => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const handleScrollEnd = (e) => {
-        console.log('e=====>', e);
+        console.log('e scroll image carousel=====>', e);
         const horizontalOffset = e.nativeEvent.contentOffset.x;
         const index = Math.round(horizontalOffset / width);
         console.log('INDEX =====', index);

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { FlatList, View, Alert } from 'react-native';
+import { FlatList, Text, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './styles';
 import { products } from '../../../data/products'
@@ -38,6 +38,7 @@ const Favorites = ({ navigation }) => {
         <SafeAreaView style={styles.main}>
             <Header title="Favorites" />
             <FlatList
+                ListEmptyComponent={(<Text style={{ textAlign: 'center', marginTop: 40, color: '#8D9BB5', fontSize: 21 }}>You do not have any favorites yet</Text>)}
                 data={likedServices}
                 renderItem={renderProducts}
                 keyExtractor={services?._id}

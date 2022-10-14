@@ -76,7 +76,6 @@ export const getServices = async () => {
         });
 
         if (response) {
-            console.log('GET SERVICES DATA', response?.data);
             return response?.data;
         }
     } catch (error) {
@@ -97,10 +96,59 @@ export const updateService = async (id, data) => {
 
         if (response) {
             const services = await getServices();
-            console.log('Services: ', services);
             return services;
         }
     } catch (error) {
         console.log('Error in updateService', error);
+    }
+}
+
+export const addServices = async (data) => {
+    try {
+        const formData = new FormData();
+        const objKeys = Object.keys(data);
+        objKeys.forEach(key => {
+            formData.append(key, data[key]);
+        });
+        console.log('ObjKeys', objKeys);
+        console.log('FORM DATA', formData);
+        
+        const response = await request({
+            url: '/services',
+            method: 'post',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            data: formData
+        });
+
+        console.log('ResponseListings', response);
+
+        if (response) {
+            const services = await getServices();
+            return services
+        }
+
+    } catch (error) {
+        console.log('Error in addServices Image', error);
+    }
+}
+
+export const deleteService = async (id) => {
+    try {
+        const response = await request({
+            url: '/services',
+            method: 'delete',
+            data: {
+                servicesId: id,
+            }
+        });
+
+        if (response) {
+            const services = await getServices()
+            return services;
+        }
+    } catch (e) {
+        console.log('Error in delete services', e.response);
     }
 }

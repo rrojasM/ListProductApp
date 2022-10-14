@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Text, ScrollView, TouchableOpacity, Image, View, Pressable, ActivityIndicator, KeyboardAvoidingView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './styles';
@@ -7,13 +7,14 @@ import Input from '../../../components/input';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { categories } from '../../../data/categories';
 import Button from '../../../components/Button';
+import { addServices } from '../../../utils/backendCalls';
+import { ServicesContext } from '../../../../App';
 
 const CreateListing = ({ navigation }) => {
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(false);
     const [values, setValues] = useState({});
-
-    console.log('values', values)
+    const { setServices } = useContext(ServicesContext)
 
     const goBack = () => {
         navigation.goBack();
@@ -22,7 +23,6 @@ const CreateListing = ({ navigation }) => {
     const uploadNewImage = async () => {
         setLoading(true);
         const result = await launchImageLibrary();
-        //console.log('Result =====>', result);
         if (result?.assets.length) {
             setImages(list => ([...list, ...result?.assets]));
             setLoading(false);
@@ -40,6 +40,28 @@ const CreateListing = ({ navigation }) => {
         setValues((val) => ({ ...val, [key]: value }));
     }
 
+    console.log('VALUES', values);
+    const onSave = async () => {
+        const img = images?.length ? images[0]: null;
+        const data ={
+            ...values,
+            category: values.category?.id,
+        };
+
+        if(img){
+            data['image'] = {
+                uri: img?.uri,
+                name: img?.fillName,
+                type: img?.type
+            }
+        }
+
+        const createService= await addServices(data);
+        setServices(createService);
+        setValues({});
+        navigation.navigate('MyListings');
+    }
+
     return (
         <SafeAreaView style={styles.main}>
             <Header showBack={true} onBackPress={goBack} title="Create a New listing" />
@@ -54,7 +76,7 @@ const CreateListing = ({ navigation }) => {
                             </View>
                         </TouchableOpacity>
 
-                        {images.map(image => (
+                        {images?.map(image => (
                             <View key={image?.fileName} style={styles.imageContent}>
                                 <Image style={styles.image} source={{ uri: image?.uri }} />
                                 <Pressable hitSlop={20} onPress={() => onDeleteImage(image)}>
@@ -96,7 +118,7 @@ const CreateListing = ({ navigation }) => {
                         multiline
                     />
                 </KeyboardAvoidingView>
-                <Button title="Submit" style={styles.button} />
+                <Button onPress={onSave} title="Submit" style={styles.button} />
             </ScrollView>
 
         </SafeAreaView>

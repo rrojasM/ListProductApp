@@ -17,8 +17,6 @@ const Profile = ({ navigation }) => {
     useEffect(() => {
         (async () => {
             const data = await getProfile();
-            console.log('profile', profile);
-            console.log('data', data);
             setProfile(data);
         })()
     }, [])
